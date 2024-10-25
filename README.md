@@ -2,94 +2,50 @@
 
 ## Overview
 
-This project analyzes sales data to provide insights into spending patterns using PySpark. The analysis covers various aspects such as total spending by country, order source, and customer behavior. The project includes data loading, processing, and visualization using Python libraries.
+This project focuses on analyzing sales data to derive insights about spending patterns using PySpark. The analysis examines various factors such as total spending by country, order source, and customer behavior.
 
 ## Getting Started
-
-To get started with this project, follow these instructions to set up your environment.
 
 ### Prerequisites
 
 - Apache Spark (PySpark)
 - Python 3.x
-- Necessary Python libraries (see Installation section)
+- Necessary Python libraries (e.g., Matplotlib)
 
 ### Initial Setup
 
-1. **Import Libraries and Initialize Spark Session**
+1. **Initialize Spark Session**: Begin by creating a Spark session to enable data processing.
+2. **Load Data**: Load sales data from a CSV file using the defined schema.
 
-```python
-from pyspark.sql import SparkSession
 
-# Create a Spark session
-spark = SparkSession.builder \
-    .appName("Sales Data Analysis") \
-    .getOrCreate()
-Load Data
-python
-Copy code
-# Define the schema for the sales data
-schema = "customer_id STRING, product_id STRING, order_date DATE, source_order STRING, location STRING, price DOUBLE"
+## Data Analysis
 
-# Load the sales data
-sales_df = spark.read.format("csv") \
-    .option("inferschema", "true") \
-    .schema(schema) \
-    .load("/home/bigdata/Desktop/pyspark project/sales.csv.txt")
+This project encompasses various analyses performed on the sales data, including:
 
-# Display the DataFrame
-display(sales_df)
+- Total amount spent by order source.
+- Total Amount spent by each Food Category
+- Total_amount spent by ordermonth
+- Total_amount spent by order_year
+- Total amount spent By order quarter
+- How many times each product purchased
+- Top 5 order Times
+- Frequecy of Customer visited to restaurent
+- Total Sales by each Country
+-  Total Sales By order_Source
 
-Data Analysis
-This project includes various analyses performed on the sales data. Below are some key steps:
 
-Total Amount Spent by Country
+## Visualizations
 
-total_amount_spent_By_Country = (sales_df
-    .join(menu_df, 'product_id')
-    .groupBy('location')
-    .agg({'price': 'sum'})
-)
+The project includes various visualizations to illustrate the findings:
 
-total_amount_spent_By_Country.show()
-Total Amount Spent by Order Source
+- A **bar chart** showcasing the total amount spent by country.
+- A **pie chart** illustrating the distribution of total amounts spent by different order sources.
 
-total_amount_spent_By_order_source = (sales_df
-    .join(menu_df, 'product_id')
-    .groupBy('source_order')
-    .agg({'price': 'sum'})
-)
+## Installation
 
-total_amount_spent_By_order_source.show()
-Visualizations
-Bar Chart for Total Amount Spent by Country
+To run this project locally, ensure you have the necessary libraries installed, including PySpark and Matplotlib.
 
-import matplotlib.pyplot as plt
+## Usage
 
-# Collect the data
-data = total_amount_spent_By_Country.collect()
+Execute the provided analysis scripts in your preferred environment (e.g., Jupyter Notebook, PyCharm) to perform the analyses and visualize the results.
 
-# Prepare data for plotting
-countries = [row['location'] for row in data]
-total_spent = [row['sum(price)'] for row in data]
-
-# Create a bar chart
-plt.figure(figsize=(12, 6))
-plt.bar(countries, total_spent, color='yellow')
-plt.title('Total Amount Spent by Country')
-plt.xlabel('Country')
-plt.ylabel('Total Amount Spent')
-plt.xticks(rotation=45)
-plt.show()
-Pie Chart for Total Amount Spent by Order Source
-
-# Prepare data for pie chart
-data = total_amount_spent_By_order_source.collect()
-order_sources = [row['source_order'] for row in data]
-total_spent = [row['sum(price)'] for row in data]
-
-# Create a pie chart
-plt.figure(figsize=(8, 8))
-plt.pie(total_spent, labels=order_sources, autopct='%1.1f%%', startangle=90)
-plt.title('Total Amount Spent by Order Source')
-plt.show()
