@@ -4,6 +4,16 @@
 
 This project focuses on analyzing sales data to derive insights about spending patterns using PySpark. The analysis examines various factors such as total spending by country, order source, and customer behavior.
 
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Data Sources](#data-sources)
+- [Data Analysis](#data-analysis)
+- [Visualizations](#visualizations)
+- [Installation](#installation)
+- [Usage](#usage)
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -17,22 +27,24 @@ This project focuses on analyzing sales data to derive insights about spending p
 1. **Initialize Spark Session**: Begin by creating a Spark session to enable data processing.
 2. **Load Data**: Load sales data from a CSV file using the defined schema.
 
+## Data Sources
+
+- Description of the dataset used (e.g., location, source).
 
 ## Data Analysis
 
 This project encompasses various analyses performed on the sales data, including:
 
 - Total amount spent by order source.
-- Total Amount spent by each Food Category
-- Total_amount spent by ordermonth
-- Total_amount spent by order_year
-- Total amount spent By order quarter
-- How many times each product purchased
-- Top 5 order Times
-- Frequecy of Customer visited to restaurent
-- Total Sales by each Country
--  Total Sales By order_Source
-
+- Total amount spent by each food category.
+- Total amount spent by order month.
+- Total amount spent by order year.
+- Total amount spent by order quarter.
+- How many times each product was purchased.
+- Top 5 order times.
+- Frequency of customer visits to restaurants.
+- Total sales by each country.
+- Total sales by order source.
 
 ## Visualizations
 
